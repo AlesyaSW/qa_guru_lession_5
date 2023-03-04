@@ -1,4 +1,7 @@
-from selene import browser, have, be
+from selene import browser, have, be, by
+import os
+
+FILE = 'act_ovt.doc'
 
 
 def test_open(preparations):
@@ -17,12 +20,11 @@ def test_open(preparations):
     browser.element('[class="react-datepicker__day react-datepicker__day--013"]').click()
     browser.element('[id="subjectsInput"]').type('e').press_enter()
     browser.element("[for=hobbies-checkbox-2]").click()
-    browser.element("[id=uploadPicture").send_keys(
-        "/Users/alesapimenova/PycharmProjects/qa_guru_lession_5/resources/act_ovt.doc")
+    browser.element('#uploadPicture').send_keys(os.getcwd() + f'/resources/{FILE}')
     browser.element("[id=currentAddress]").should(be.blank).type("test test test test test")
     browser.element("[id=state]").click()
     browser.element("[id=react-select-3-option-1]").click()
     browser.element("[id=city]").click()
     browser.element("[id=react-select-4-option-0]").click()
     browser.element("[id=submit]").submit()
-    
+
